@@ -6,22 +6,24 @@ A production-grade architecture pattern demonstrating the separation of **Workfl
 
 This pipeline uses an Orchestrator-Agent-Tool design pattern. LangGraph acts as the state manager, CrewAI handles agent logic, and the MCP server exposes standardized tools for system data access.
 
-📂 Complete Project Folder Structure
 
+## 📂 Project Directory Structure
+
+```text
 agentic-mcp-pipeline/                      # Workspace root directory
 │
 ├── mcp-server/                             # REPO 1: FastMCP Server Project
-│   ├── main.py                             # Runs FastAPI/FastMCP server on port 8000
-│   ├── pyproject.toml                      # FastMCP dependencies configuration
+│   ├── main.py                             # Runs FastMCP server on http://localhost:8000/sse
+│   ├── pyproject.toml                      # FastMCP server dependencies configuration
 │   └── README.md                           # Documentation for server setup
 │
 ├── mcp-crew/                               # REPO 2: Standalone CrewAI Package
-│   ├── pyproject.toml                      # Package config defining mcp-crew build rules
+│   ├── pyproject.toml                      # Package configuration defining mcp-crew build rules
 │   ├── README.md                           # Documentation for crew package
 │   └── mcp_crew/                          # Core Python package module
 │       ├── __init__.py                     # Package initialization file
 │       ├── crew.py                         # Defines McpCrew class, Agent, Task, & MCP adapter
-│       └── config/                         # Optional YAML configuration directory
+│       └── config/                         # YAML configuration directory
 │           ├── agents.yaml                 # Agent roles and goals configuration
 │           └── tasks.yaml                  # Task descriptions and expected outputs
 │
@@ -30,6 +32,7 @@ agentic-mcp-pipeline/                      # Workspace root directory
     ├── pyproject.toml                      # References local "../mcp-crew" dependency
     ├── .env                                # API keys (OPENAI_API_KEY, OPENROUTER_API_KEY)
     └── README.md                           # Main user and execution guide
+
 
 
 ### 🛠️ Repository Breakdown & Inter-Package Connections
