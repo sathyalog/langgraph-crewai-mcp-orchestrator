@@ -33,7 +33,8 @@ agentic-mcp-pipeline/                      # Workspace root directory
     ├── .env                                # API keys (OPENAI_API_KEY, OPENROUTER_API_KEY)
     └── README.md                           # Main user and execution guide
 
-
+```
+![alt text](deepseek_mermaid_20260909_a59a12.png)
 
 ### 🛠️ Repository Breakdown & Inter-Package Connections
 
