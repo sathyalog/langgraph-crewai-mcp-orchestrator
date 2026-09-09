@@ -1,8 +1,11 @@
 import httpx
 from mcp.server.mcpserver import MCPServer
 
-# Initialize MCPServer in MCP v2.x
-mcp = MCPServer("GitHub User Inspector", description="Fetch GitHub user profile info and top public repositories.")
+# 1. Remove 'port' from initialization
+mcp = MCPServer(
+    "GitHub User Inspector",
+    description="Fetch GitHub user profile info and top public repositories."
+)
 
 @mcp.tool()
 def inspect_github_user(username: str = "sathyalog") -> str:
@@ -29,4 +32,5 @@ def inspect_github_user(username: str = "sathyalog") -> str:
     )
 
 if __name__ == "__main__":
-    mcp.run(transport="sse")
+    # 2. Pass transport and port inside run()
+    mcp.run(transport="sse", port=8000)
