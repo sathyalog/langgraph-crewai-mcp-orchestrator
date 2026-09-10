@@ -1,5 +1,7 @@
 # Agentic Microservices Pattern: LangGraph + CrewAI + FastMCP
 
+"A Monorepo Microservices Architecture featuring decoupled FastMCP tool providers and LangGraph state engines linked via local package workspaces and asynchronous SSE transports."
+
 A production-grade architecture pattern demonstrating the separation of **Workflow Orchestration (LangGraph)**, **Multi-Agent Reasoning (CrewAI)**, and **Standardized Tool Integration (MCP Server)** using **OpenRouter** and **`uv`**.
 
 ### 🏗️ Architecture & Pattern Overview
