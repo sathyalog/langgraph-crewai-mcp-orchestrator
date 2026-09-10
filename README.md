@@ -82,7 +82,36 @@ The Task: Developer Activity Audit
 ⚬ LangGraph encapsulates `McpCrew().crew().kickoff()` inside an execution node.
 ⚬ Inputs pass seamlessly from the Streamlit UI into the LangGraph state context dictionary.
 ⚬ Ensures state persistent logging and exception handling surrounding agent execution.
-
+```
+Streamlit UI
+   │ (Submits "sathyalog")
+   ▼
+LangGraph workflow.invoke({'username': 'sathyalog'})
+   │ (Passes state)
+   ▼
+call_crew(state) Node
+   │ (Calls kickoff)
+   ▼
+McpCrew().crew().kickoff(inputs={'username': 'sathyalog'})
+   │ (Initializes Agent & connects to http://localhost:8000/sse)
+   ▼
+MCPServerAdapter
+   │ (Pulls tool definitions via SSE)
+   ▼
+CrewAI Agent (LLM Reasoning)
+   │ (Decides to invoke tool: fetch_github_user_data(username="sathyalog"))
+   ▼
+FastMCP Server (mcp-server)
+   │ (Executes HTTP GET to GitHub API and returns profile/repo string)
+   ▼
+CrewAI Task Evaluation
+   │ (LLM synthesizes response string into formatted output)
+   ▼
+Return payload to call_crew state -> LangGraph execution complete
+   │ (Updates state context)
+   ▼
+Streamlit App renders response inside st.table()
+```
 ### 🎯 Why We Chose This Approach
 
 ⚬ Decoupled Architecture: Separates interface logic, agent reasoning, and data sources into independent components.
